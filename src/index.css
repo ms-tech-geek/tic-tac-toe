@@ -190,6 +190,10 @@ ol {
   padding: 1rem;
 }
 
+#game-board button:hover {
+  border: thick solid #f8ca31;
+}
+
 #game-over {
   position: absolute;
   top: 0;
