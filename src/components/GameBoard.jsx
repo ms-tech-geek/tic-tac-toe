@@ -26,6 +26,11 @@ const GameBoard = ({ onSelectSquare, turns }) => {
                 <button
                   onClick={() => onSelectSquare(rowIndex, colIndex)}
                   disabled={activePlayerSymbol}
+                  style={
+                    activePlayerSymbol && {
+                      cursor: 'not-allowed',
+                    }
+                  }
                 >
                   {activePlayerSymbol}
                 </button>
