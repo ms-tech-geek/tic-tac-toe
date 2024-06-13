@@ -14,6 +14,18 @@ const initialGameBoard = [
 const deriveActivePlayer = (gameTurns) =>
   gameTurns.length > 0 && gameTurns[0].player === 'X' ? '0' : 'X';
 
+const deriveGameBoard = (gameTurns) => {
+  let gameBoard = [...initialGameBoard.map((innerArray) => [...innerArray])];
+
+  for (const turn of gameTurns) {
+    const { square, player } = turn;
+    const { row, col } = square;
+
+    gameBoard[row][col] = player;
+  }
+  return gameBoard;
+};
+
 const deriveWinner = (gameBoard, players) => {
   let winner;
 
@@ -38,18 +50,10 @@ const App = () => {
     X: 'Player 1',
     O: 'Player 2',
   });
+
   const [gameTurns, setGameTurns] = useState([]);
   const activePlayer = deriveActivePlayer(gameTurns);
-
-  let gameBoard = [...initialGameBoard.map((innerArray) => [...innerArray])];
-
-  for (const turn of gameTurns) {
-    const { square, player } = turn;
-    const { row, col } = square;
-
-    gameBoard[row][col] = player;
-  }
-
+  const gameBoard = deriveGameBoard(gameTurns);
   const winner = deriveWinner(gameBoard, players);
   const hasDraw = gameTurns.length === 9 && !winner;
 
