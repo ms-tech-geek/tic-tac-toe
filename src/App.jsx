@@ -26,7 +26,7 @@ const deriveGameBoard = (gameTurns) => {
   return gameBoard;
 };
 
-const deriveWinner = (gameBoard, players) => {
+const deriveWinner = ({ gameBoard, players }) => {
   let winner;
 
   for (const combination of WinningCombinations) {
@@ -54,7 +54,7 @@ const App = () => {
   const [gameTurns, setGameTurns] = useState([]);
   const activePlayer = deriveActivePlayer(gameTurns);
   const gameBoard = deriveGameBoard(gameTurns);
-  const winner = deriveWinner(gameBoard, players);
+  const winner = deriveWinner({ gameBoard, players });
   const hasDraw = gameTurns.length === 9 && !winner;
 
   const handleSelectSquare = (rowIndex, colIndex) => {
@@ -80,7 +80,7 @@ const App = () => {
     setGameTurns([]);
   };
 
-  const handlePlayerNameChange = (symbol, newName) => {
+  const handlePlayerNameChange = ({ symbol, newName }) => {
     setPlayers((prevPlayers) => {
       return {
         ...prevPlayers,
