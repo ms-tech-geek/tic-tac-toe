@@ -59,10 +59,16 @@ const App = () => {
   const [players, setPlayers] = useState(initialPlayers);
   const [gameTurns, setGameTurns] = useState([]);
   const [scoreBoard, setScoreBoard] = useState({ X: 0, O: 0 });
+  // const [winner, setWinner] = useState(null);
   const activePlayer = deriveActivePlayer(gameTurns);
   const gameBoard = deriveGameBoard(gameTurns);
   const winner = deriveWinner({ gameBoard, players });
   const hasDraw = gameTurns.length === 9 && !winner;
+
+  // useEffect(() => {
+  //   const newWinner =
+  //   setWinner(newWinner);
+  // }, [gameTurns, players]);
 
   const handleSelectSquare = (rowIndex, colIndex) => {
     setGameTurns((prevTurns) => {
@@ -87,11 +93,11 @@ const App = () => {
     setGameTurns([]);
   };
 
-  const handlePlayerNameChange = ({ symbol, newName }) => {
+  const handlePlayerNameChange = ({ symbol, playerName }) => {
     setPlayers((prevPlayers) => {
       return {
         ...prevPlayers,
-        [symbol]: newName,
+        [symbol]: playerName,
       };
     });
   };
@@ -112,17 +118,17 @@ const App = () => {
     if (winner) {
       updateScoreBoard(winner);
     }
-  }, [winner]);
+  }, [winner, players]);
 
   return (
     <main>
       <div id="game-container">
         <div id="scoreboard">
           <span style={{ margin: '2rem', fontSize: '1.5rem' }}>
-            X Wins : {scoreBoard.X}
+            {players.X} : {scoreBoard.X} Wins
           </span>
           <span style={{ margin: '2rem', fontSize: '1.5rem' }}>
-            O Wins: {scoreBoard.O}
+            {players.O} : {scoreBoard.O} Wins
           </span>
         </div>
         <ol id="players" className="highlight-player">
