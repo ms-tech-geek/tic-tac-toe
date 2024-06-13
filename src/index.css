@@ -70,6 +70,20 @@ h1 {
   }
 }
 
+#scoreboard {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+
+  @media (max-width: 450px) {
+    margin: 0;
+  }
+}
+
 #players {
   list-style: none;
   padding: 0;

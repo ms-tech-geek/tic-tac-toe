@@ -117,8 +117,7 @@ const App = () => {
   return (
     <main>
       <div id="game-container">
-        <div>
-          <h3>ScoreBoard</h3>
+        <div id="scoreboard">
           <span style={{ margin: '2rem', fontSize: '1.5rem' }}>
             X Wins : {scoreBoard.X}
           </span>
