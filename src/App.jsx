@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import GameBoard from './components/GameBoard';
 import Player from './components/Player';
 import Log from './components/Log';
@@ -16,8 +16,11 @@ const initialGameBoard = [
   [null, null, null],
 ];
 
-const deriveActivePlayer = (gameTurns) =>
-  gameTurns.length > 0 && gameTurns[0].player === 'X' ? '0' : 'X';
+const deriveActivePlayer = (gameTurns) => {
+  const activePlayer =
+    gameTurns.length > 0 && gameTurns[0].player === 'X' ? 'O' : 'X';
+  return activePlayer;
+};
 
 const deriveGameBoard = (gameTurns) => {
   let gameBoard = [...initialGameBoard.map((innerArray) => [...innerArray])];
@@ -28,6 +31,7 @@ const deriveGameBoard = (gameTurns) => {
 
     gameBoard[row][col] = player;
   }
+
   return gameBoard;
 };
 
@@ -47,13 +51,14 @@ const deriveWinner = ({ gameBoard, players }) => {
     )
       winner = players[firstSquareSymbol];
   }
+
   return winner;
 };
 
 const App = () => {
   const [players, setPlayers] = useState(initialPlayers);
-
   const [gameTurns, setGameTurns] = useState([]);
+  const [scoreBoard, setScoreBoard] = useState({ X: 0, O: 0 });
   const activePlayer = deriveActivePlayer(gameTurns);
   const gameBoard = deriveGameBoard(gameTurns);
   const winner = deriveWinner({ gameBoard, players });
@@ -91,9 +96,36 @@ const App = () => {
     });
   };
 
+  const updateScoreBoard = (winner) => {
+    const winnerSymbol = Object.keys(players).find(
+      (key) => players[key] === winner
+    );
+    if (winnerSymbol) {
+      setScoreBoard((prevScores) => ({
+        ...prevScores,
+        [winnerSymbol]: prevScores[winnerSymbol] + 1,
+      }));
+    }
+  };
+
+  useEffect(() => {
+    if (winner) {
+      updateScoreBoard(winner);
+    }
+  }, [winner]);
+
   return (
     <main>
       <div id="game-container">
+        <div>
+          <h3>ScoreBoard</h3>
+          <span style={{ margin: '2rem', fontSize: '1.5rem' }}>
+            X Wins : {scoreBoard.X}
+          </span>
+          <span style={{ margin: '2rem', fontSize: '1.5rem' }}>
+            O Wins: {scoreBoard.O}
+          </span>
+        </div>
         <ol id="players" className="highlight-player">
           <Player
             initialName={initialPlayers.X}
@@ -104,7 +136,7 @@ const App = () => {
           <Player
             initialName={initialPlayers.O}
             symbol="O"
-            isActive={activePlayer === '0'}
+            isActive={activePlayer === 'O'}
             onChangeName={handlePlayerNameChange}
           />
         </ol>
