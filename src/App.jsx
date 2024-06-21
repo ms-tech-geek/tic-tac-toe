@@ -62,7 +62,6 @@ const App = () => {
   const [players, setPlayers] = useState(initialPlayers);
   const [gameTurns, setGameTurns] = useState([]);
   const [scoreBoard, setScoreBoard] = useState({ X: 0, O: 0 });
-  // const [winner, setWinner] = useState(null);
   const activePlayer = useMemo(
     () => deriveActivePlayer(gameTurns),
     [gameTurns]
