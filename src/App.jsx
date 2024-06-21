@@ -4,6 +4,10 @@ import Player from './components/Player';
 import Log from './components/Log';
 import GameOver from './components/GameOver';
 import { WinningCombinations } from './helpers/WinningCombinations';
+import moveSound from './assets/sounds/move.mp3';
+import winSound from './assets/sounds/win.wav';
+import drawSound from './assets/sounds/draw.wav';
+import resetSound from './assets/sounds/reset.ogg';
 
 const initialPlayers = {
   X: 'Player 1',
@@ -65,10 +69,26 @@ const App = () => {
   const winner = deriveWinner({ gameBoard, players });
   const hasDraw = gameTurns.length === 9 && !winner;
 
-  // useEffect(() => {
-  //   const newWinner =
-  //   setWinner(newWinner);
-  // }, [gameTurns, players]);
+  const moveAudio = new Audio(moveSound);
+  const winAudio = new Audio(winSound);
+  const drawAudio = new Audio(drawSound);
+  const resetAudio = new Audio(resetSound);
+
+  const handleMoveSound = () => {
+    moveAudio.play();
+  };
+
+  const handleWinSound = () => {
+    winAudio.play();
+  };
+
+  const handleDrawSound = () => {
+    drawAudio.play();
+  };
+
+  const handleResetSound = () => {
+    resetAudio.play();
+  };
 
   const handleSelectSquare = (rowIndex, colIndex) => {
     setGameTurns((prevTurns) => {
@@ -87,10 +107,12 @@ const App = () => {
 
       return updatedTurns;
     });
+    handleMoveSound();
   };
 
   const handleRematch = () => {
     setGameTurns([]);
+    handleResetSound();
   };
 
   const handlePlayerNameChange = ({ symbol, playerName }) => {
@@ -117,6 +139,7 @@ const App = () => {
   useEffect(() => {
     if (winner) {
       updateScoreBoard(winner);
+      handleWinSound();
     }
   }, [winner, players]);
 
