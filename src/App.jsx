@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import GameBoard from './components/GameBoard';
 import Player from './components/Player';
 import Log from './components/Log';
@@ -64,9 +64,15 @@ const App = () => {
   const [gameTurns, setGameTurns] = useState([]);
   const [scoreBoard, setScoreBoard] = useState({ X: 0, O: 0 });
   // const [winner, setWinner] = useState(null);
-  const activePlayer = deriveActivePlayer(gameTurns);
-  const gameBoard = deriveGameBoard(gameTurns);
-  const winner = deriveWinner({ gameBoard, players });
+  const activePlayer = useMemo(
+    () => deriveActivePlayer(gameTurns),
+    [gameTurns]
+  );
+  const gameBoard = useMemo(() => deriveGameBoard(gameTurns), [gameTurns]);
+  const winner = useMemo(
+    () => deriveWinner({ gameBoard, players }),
+    [gameBoard, players]
+  );
   const hasDraw = gameTurns.length === 9 && !winner;
 
   const moveAudio = new Audio(moveSound);
