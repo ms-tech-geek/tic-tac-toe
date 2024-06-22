@@ -1,9 +1,13 @@
 import { useEffect, useMemo, useState, useCallback } from 'react';
+import {
+  deriveActivePlayer,
+  deriveWinner,
+  deriveGameBoard,
+} from './hooks/gameLogic';
 import GameBoard from './components/GameBoard';
 import Player from './components/Player';
 import Log from './components/Log';
 import GameOver from './components/GameOver';
-import { WinningCombinations } from './helpers/WinningCombinations';
 import moveSound from './assets/sounds/move.mp3';
 import winSound from './assets/sounds/win.aac';
 import drawSound from './assets/sounds/draw.wav';
@@ -12,51 +16,6 @@ import resetSound from './assets/sounds/reset.ogg';
 const initialPlayers = {
   X: 'Player 1',
   O: 'Player 2',
-};
-
-const initialGameBoard = [
-  [null, null, null],
-  [null, null, null],
-  [null, null, null],
-];
-
-const deriveActivePlayer = (gameTurns) => {
-  const activePlayer =
-    gameTurns.length > 0 && gameTurns[0].player === 'X' ? 'O' : 'X';
-  return activePlayer;
-};
-
-const deriveGameBoard = (gameTurns) => {
-  let gameBoard = [...initialGameBoard.map((innerArray) => [...innerArray])];
-
-  for (const turn of gameTurns) {
-    const { square, player } = turn;
-    const { row, col } = square;
-
-    gameBoard[row][col] = player;
-  }
-
-  return gameBoard;
-};
-
-const deriveWinner = ({ gameBoard, players }) => {
-  let winner;
-
-  for (const combination of WinningCombinations) {
-    const firstSquareSymbol = gameBoard[combination[0].row][combination[0].col];
-    const secondSquareSymbol =
-      gameBoard[combination[1].row][combination[1].col];
-    const thirdSquareSymbol = gameBoard[combination[2].row][combination[2].col];
-
-    if (
-      firstSquareSymbol &&
-      firstSquareSymbol === secondSquareSymbol &&
-      firstSquareSymbol === thirdSquareSymbol
-    )
-      winner = players[firstSquareSymbol];
-  }
-
-  return winner;
 };
 
 const App = () => {
