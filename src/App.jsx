@@ -109,13 +109,17 @@ const App = () => {
     playResetSound();
   };
 
+  const updatePlayerName = (prevPlayers, symbol, playerName) => {
+    return {
+      ...prevPlayers,
+      [symbol]: playerName,
+    };
+  };
+
   const handlePlayerNameChange = ({ symbol, playerName }) => {
-    setPlayers((prevPlayers) => {
-      return {
-        ...prevPlayers,
-        [symbol]: playerName,
-      };
-    });
+    setPlayers((prevPlayers) =>
+      updatePlayerName(prevPlayers, symbol, playerName)
+    );
   };
 
   const updateScoreBoard = (winner) => {
