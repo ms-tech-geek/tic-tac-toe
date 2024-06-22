@@ -1,8 +1,8 @@
-const LogItem = ({ turn }) => {
+const LogItem = ({ turn }) => (
   <li>
     {turn.player} selected {turn.square.row},{turn.square.col}
-  </li>;
-};
+  </li>
+);
 
 const Log = ({ turns }) => {
   return (
