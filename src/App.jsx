@@ -110,7 +110,6 @@ const App = () => {
     <main>
       <div id="game-container">
         <ScoreBoard players={players} scoreBoard={scoreBoard} />
-
         <ol id="players" className="highlight-player">
           <Player
             initialName={initialPlayers.X}
