@@ -1,4 +1,5 @@
-import Player from './Player';
+import PlayerCard from './PlayerCard';
+import styles from './styles.module.scss';
 
 const PlayersBoard = ({
   initialPlayers,
@@ -8,15 +9,15 @@ const PlayersBoard = ({
   const { X, O } = initialPlayers;
 
   return (
-    <ol id="players" className="highlight-player">
-      <Player
+    <ol className={styles.players}>
+      <PlayerCard
         initialName={X}
         symbol="X"
         isActive={activePlayer === 'X'}
         onChangeName={handlePlayerNameChange}
         playerKey="X"
       />
-      <Player
+      <PlayerCard
         initialName={O}
         symbol="O"
         isActive={activePlayer === 'O'}

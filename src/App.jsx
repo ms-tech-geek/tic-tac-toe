@@ -6,7 +6,6 @@ import {
 } from './hooks/gameLogic';
 import ScoreBoard from './components/scoreboard/ScoreBoard';
 import GameBoard from './components/GameBoard';
-import Player from './components/players/Player';
 import Log from './components/Log';
 import GameOver from './components/GameOver';
 import moveSound from './assets/sounds/move.mp3';
@@ -110,13 +109,12 @@ const App = () => {
   return (
     <main>
       <ScoreBoard players={players} scoreBoard={scoreBoard} />
-
+      <PlayersBoard
+        initialPlayers={initialPlayers}
+        activePlayer={activePlayer}
+        handlePlayerNameChange={handlePlayerNameChange}
+      />
       <div id="game-container">
-        <PlayersBoard
-          initialPlayers={initialPlayers}
-          activePlayer={activePlayer}
-          handlePlayerNameChange={handlePlayerNameChange}
-        />
         {(winner || hasDraw) && (
           <GameOver winner={winner} onRematch={handleRematch} />
         )}
