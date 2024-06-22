@@ -5,7 +5,7 @@ import styles from './ScoreBoard.module.css';
 const ScoreBoard = ({ players, scoreBoard }) => {
   return (
     <div className={styles.scoreboardContainer}>
-      <h2>Scoreboard</h2>
+      <h2>Score</h2>
       <div className={styles.scoreboard}>
         {Object.keys(players).map((playerKey) => (
           <div key={playerKey} className={styles.playerScore}>
