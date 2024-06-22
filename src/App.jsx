@@ -6,7 +6,7 @@ import GameOver from './components/GameOver';
 import { WinningCombinations } from './helpers/WinningCombinations';
 import moveSound from './assets/sounds/move.mp3';
 import winSound from './assets/sounds/win.aac';
-import drawSound from './assets/sounds/draw.mpeg';
+import drawSound from './assets/sounds/draw.wav';
 import resetSound from './assets/sounds/reset.ogg';
 
 const initialPlayers = {
@@ -82,7 +82,12 @@ const App = () => {
 
   const playMoveSound = useSound(moveSound);
   const playWinSound = useSound(winSound);
+  const playDrawSound = useSound(drawSound);
   const playResetSound = useSound(resetSound);
+
+  if (hasDraw) {
+    playDrawSound();
+  }
 
   const handleSelectSquare = (rowIndex, colIndex) => {
     setGameTurns((prevTurns) => {
