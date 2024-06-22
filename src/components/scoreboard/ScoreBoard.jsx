@@ -1,6 +1,6 @@
 // ScoreBoard.jsx
 import React from 'react';
-import styles from './ScoreBoard.module.css';
+import styles from './styles.module.scss';
 
 const ScoreBoard = ({ players, scoreBoard }) => {
   return (
