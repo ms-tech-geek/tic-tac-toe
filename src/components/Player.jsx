@@ -13,6 +13,12 @@ const Player = ({ initialName, symbol, isActive, onChangeName }) => {
     setPlayerName(event.target.value);
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      handleEditClick();
+    }
+  };
+
   return (
     <li className={isActive ? 'active' : undefined}>
       <span className="player">
@@ -21,6 +27,7 @@ const Player = ({ initialName, symbol, isActive, onChangeName }) => {
             type="text"
             value={playerName}
             onChange={handleChange}
+            onKeyDown={handleKeyDown}
             required
           />
         ) : (
