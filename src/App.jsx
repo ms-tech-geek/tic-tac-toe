@@ -4,7 +4,7 @@ import {
   deriveWinner,
   deriveGameBoard,
 } from './hooks/gameLogic';
-import ScoreBoard from './components/ScoreBoard';
+import ScoreBoard from './components/scoreboard/ScoreBoard';
 import GameBoard from './components/GameBoard';
 import Player from './components/Player';
 import Log from './components/Log';
@@ -108,8 +108,8 @@ const App = () => {
 
   return (
     <main>
+      <ScoreBoard players={players} scoreBoard={scoreBoard} />
       <div id="game-container">
-        <ScoreBoard players={players} scoreBoard={scoreBoard} />
         <ol id="players" className="highlight-player">
           <Player
             initialName={initialPlayers.X}

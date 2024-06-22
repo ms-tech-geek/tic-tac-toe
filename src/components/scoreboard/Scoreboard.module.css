@@ -1,0 +1,45 @@
+/* ScoreBoard.module.css */
+.scoreboardContainer {
+  background: linear-gradient(#383624, #282617);
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 45rem;
+  margin: 3rem auto;
+}
+
+.scoreboard {
+  display: flex;
+  justify-content: space-around;
+}
+
+.playerScore {
+  background-color: #f6e35a;
+  border: 1px solid #f6e35a;
+  border-radius: 8px;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.playerName {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.score {
+  font-size: 2rem;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .scoreboard {
+    flex-direction: column;
+  }
+
+  .playerScore {
+    margin-bottom: 10px;
+  }
+}

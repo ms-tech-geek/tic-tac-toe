@@ -70,49 +70,6 @@ h1 {
   }
 }
 
-#scoreboard-container {
-  background-color: #f9f9f9;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-#scoreboard {
-  display: flex;
-  justify-content: space-around;
-}
-
-.player-score {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 10px 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.player-name {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #333;
-}
-
-.score {
-  font-size: 2rem;
-  color: #333;
-}
-
-@media (max-width: 768px) {
-  #scoreboard {
-    flex-direction: column;
-  }
-
-  .player-score {
-    margin-bottom: 10px;
-  }
-}
-
 #players {
   list-style: none;
   padding: 0;
