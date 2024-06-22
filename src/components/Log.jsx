@@ -1,10 +1,14 @@
+const LogItem = ({ turn }) => {
+  <li>
+    {turn.player} selected {turn.square.row},{turn.square.col}
+  </li>;
+};
+
 const Log = ({ turns }) => {
   return (
     <ol id="log">
       {turns.map((turn) => (
-        <li key={`${turn.square.row}-${turn.square.col}`}>
-          {turn.player} selected {turn.square.row},{turn.square.col}
-        </li>
+        <LogItem key={`${turn.square.row}-${turn.square.col}`} turn={turn} />
       ))}
     </ol>
   );
