@@ -5,7 +5,8 @@ import Log from './components/Log';
 import GameOver from './components/GameOver';
 import { WinningCombinations } from './helpers/WinningCombinations';
 import moveSound from './assets/sounds/move.mp3';
-import winSound from './assets/sounds/win.wav';
+import winSound from './assets/sounds/win.aac';
+import drawSound from './assets/sounds/draw.mpeg';
 import resetSound from './assets/sounds/reset.ogg';
 
 const initialPlayers = {
