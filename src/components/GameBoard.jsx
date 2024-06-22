@@ -1,4 +1,16 @@
-import { useState } from 'react';
+const GameCard = ({ onButtonClick, row, col, symbol }) => (
+  <button
+    onClick={() => onButtonClick(row, col)}
+    disabled={symbol}
+    style={
+      symbol && {
+        cursor: 'not-allowed',
+      }
+    }
+  >
+    {symbol}
+  </button>
+);
 
 const GameBoard = ({ onSelectSquare, board }) => {
   return (
@@ -8,17 +20,12 @@ const GameBoard = ({ onSelectSquare, board }) => {
           <ol>
             {row.map((activePlayerSymbol, colIndex) => (
               <li key={colIndex}>
-                <button
-                  onClick={() => onSelectSquare(rowIndex, colIndex)}
-                  disabled={activePlayerSymbol}
-                  style={
-                    activePlayerSymbol && {
-                      cursor: 'not-allowed',
-                    }
-                  }
-                >
-                  {activePlayerSymbol}
-                </button>
+                <GameCard
+                  onButtonClick={onSelectSquare}
+                  row={rowIndex}
+                  col={colIndex}
+                  symbol={activePlayerSymbol}
+                />
               </li>
             ))}
           </ol>
