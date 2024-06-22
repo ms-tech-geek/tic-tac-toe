@@ -5,19 +5,23 @@ const PlayersBoard = ({
   activePlayer,
   handlePlayerNameChange,
 }) => {
+  const { X, O } = initialPlayers;
+
   return (
     <ol id="players" className="highlight-player">
       <Player
-        initialName={initialPlayers.X}
+        initialName={X}
         symbol="X"
         isActive={activePlayer === 'X'}
         onChangeName={handlePlayerNameChange}
+        playerKey="X"
       />
       <Player
-        initialName={initialPlayers.O}
+        initialName={O}
         symbol="O"
         isActive={activePlayer === 'O'}
         onChangeName={handlePlayerNameChange}
+        playerKey="O"
       />
     </ol>
   );
