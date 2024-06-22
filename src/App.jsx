@@ -10,7 +10,7 @@ import Log from './components/Log';
 import GameOver from './components/GameOver';
 import moveSound from './assets/sounds/move.mp3';
 import winSound from './assets/sounds/win.aac';
-import drawSound from './assets/sounds/draw.wav';
+import drawSound from './assets/sounds/draw.aac';
 import resetSound from './assets/sounds/reset.ogg';
 
 const initialPlayers = {
