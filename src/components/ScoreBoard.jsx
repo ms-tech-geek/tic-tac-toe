@@ -2,7 +2,7 @@ const ScoreBoard = ({ players, scoreBoard }) => {
   return (
     <div id="scoreboard">
       {Object.keys(players).map((playerKey) => (
-        <span key={playerKey} style={{ margin: '2rem', fontSize: '1.5rem' }}>
+        <span key={playerKey} className="score-item">
           {players[playerKey]} : {scoreBoard[playerKey]} Wins
         </span>
       ))}
