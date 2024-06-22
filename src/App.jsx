@@ -33,16 +33,16 @@ const App = () => {
   );
   const hasDraw = gameTurns.length === 9 && !winner;
 
-  const useSound = (sound) => {
+  const usePlaySound = (sound) => {
     return useCallback(() => {
       new Audio(sound).play();
     }, [sound]);
   };
 
-  const playMoveSound = useSound(moveSound);
-  const playWinSound = useSound(winSound);
-  const playDrawSound = useSound(drawSound);
-  const playResetSound = useSound(resetSound);
+  const playMoveSound = usePlaySound(moveSound);
+  const playWinSound = usePlaySound(winSound);
+  const playDrawSound = usePlaySound(drawSound);
+  const playResetSound = usePlaySound(resetSound);
 
   if (hasDraw) {
     playDrawSound();
