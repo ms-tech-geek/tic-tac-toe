@@ -14,7 +14,7 @@ This project is deployed on Netlify. You can access it at the following URL:
 
 https://tic-tac-toe-ms-tech-geek.netlify.app/
 
-## Installation as a PWA
+## Installation as a Progressive Web App
 
 ### Desktop
 
