@@ -12,9 +12,53 @@ export default defineConfig({
         name: 'Tic Tac Toe',
         icons: [
           {
-            src: 'favicon.png',
-            sizes: '64x64 32x32 24x24 16x16',
+            src: 'icon-16x16.png',
+            sizes: '16x16',
             type: 'image/png',
+          },
+          {
+            src: 'icon-24x24.png',
+            sizes: '24x24',
+            type: 'image/png',
+          },
+          {
+            src: 'icon-32x32.png',
+            sizes: '32x32',
+            type: 'image/png',
+          },
+          {
+            src: 'icon-64x64.png',
+            sizes: '64x64',
+            type: 'image/png',
+          },
+          {
+            src: 'icon-144x144.png',
+            sizes: '144x144',
+            type: 'image/png',
+          },
+          {
+            src: 'icon-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+          {
+            src: 'icon-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+          },
+        ],
+        screenshots: [
+          {
+            src: 'screenshot1.png',
+            sizes: '640x480',
+            type: 'image/png',
+            form_factor: 'wide',
+          },
+          {
+            src: 'screenshot2.png',
+            sizes: '640x480',
+            type: 'image/png',
+            form_factor: 'wide',
           },
         ],
         start_url: '.',
