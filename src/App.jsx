@@ -7,7 +7,7 @@ import {
 import ScoreBoard from './components/scoreboard/ScoreBoard';
 import GameBoard from './components/gameboard/GameBoard';
 import Log from './components/Log';
-import GameOver from './components/GameOver';
+import GameOver from './components/gameover/GameOver';
 import moveSound from './assets/sounds/move.mp3';
 import winSound from './assets/sounds/win.aac';
 import drawSound from './assets/sounds/draw.aac';
