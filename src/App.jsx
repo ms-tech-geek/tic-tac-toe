@@ -8,10 +8,10 @@ import ScoreBoard from './components/scoreboard/ScoreBoard';
 import GameBoard from './components/gameboard/GameBoard';
 import GameLog from './components/gamelog/GameLog';
 import GameOver from './components/gameover/GameOver';
-import moveSound from './assets/sounds/move.mp3';
-import winSound from './assets/sounds/win.aac';
-import drawSound from './assets/sounds/draw.aac';
-import resetSound from './assets/sounds/reset.ogg';
+import moveSound from '/assets/sounds/move.mp3';
+import winSound from '/assets/sounds/win.aac';
+import drawSound from '/assets/sounds/draw.aac';
+import resetSound from '/assets/sounds/reset.ogg';
 import PlayersBoard from './components/players/PlayersBoard';
 
 const initialPlayers = {
@@ -50,6 +50,7 @@ const App = () => {
   }
 
   const handleSelectSquare = (rowIndex, colIndex) => {
+    playMoveSound();
     setGameTurns((prevTurns) => {
       const currentPlayer = deriveActivePlayer(prevTurns);
 
@@ -66,12 +67,11 @@ const App = () => {
 
       return updatedTurns;
     });
-    playMoveSound();
   };
 
   const handleRematch = () => {
-    setGameTurns([]);
     playResetSound();
+    setGameTurns([]);
   };
 
   const updatePlayerName = (prevPlayers, symbol, playerName) => {
@@ -101,8 +101,8 @@ const App = () => {
 
   useEffect(() => {
     if (winner) {
-      updateScoreBoard(winner);
       playWinSound();
+      updateScoreBoard(winner);
     }
   }, [winner, players]);
 
