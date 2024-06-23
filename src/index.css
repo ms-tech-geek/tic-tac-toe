@@ -1,169 +1,234 @@
-@import url('https://fonts.googleapis.com/css2?family=Caprasimo&family=Roboto+Slab:wght@400;700&display=swap');
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  font-family: 'Roboto Slab', sans-serif;
-  line-height: 1.5;
-
-  color: #ebe7ef;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
-body {
-  background: radial-gradient(
-      circle at top,
-      rgba(241, 210, 70, 0.98),
-      rgba(250, 176, 103, 0.87)
-    ),
-    url('bg-pattern-dark.png');
-  background-repeat: repeat;
-  background-size:
-    100% 100%,
-    30% 30%,
-    100% 100%;
-}
-
-header {
-  text-align: center;
-}
-
-h1 {
-  font-family: 'Caprasimo', cursive;
-  font-size: 3rem;
-  margin: 0 auto 1rem auto;
-  color: #3f3b00;
-
-  @media (max-width: 450px) {
-    font-size: 2.2rem;
-  }
-}
-
-#game-container {
-  max-width: 30rem;
-  margin: 0 auto;
-  padding: 1rem;
-  border-radius: 6px;
-  background: linear-gradient(#383624, #282617);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  position: relative;
-}
-
-ol {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-#pre-game {
-  text-align: center;
-}
-
-#pre-game button {
-  cursor: pointer;
-  background: none;
-  color: #f8c031;
-  border: none;
-  font-family: 'Caprasimo', cursive;
-  font-size: 4rem;
-  text-shadow: 0 0 12px rgba(0, 0, 0, 0.7);
-  animation: pulse-text-size 2s infinite ease-out;
-}
-
-#game-hints {
-  text-align: center;
-  color: #46432f;
-}
-
-#game-hints h2 {
-  font-family: 'Caprasimo', cursive;
-  font-size: 2rem;
-  margin: 0;
-}
-
-#game-hints ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-#game-hints button {
-  cursor: pointer;
-  border: none;
-  background: transparent;
-  color: #23221f;
-  font: inherit;
-  margin-top: 1.5rem;
-}
-
-@keyframes slide-in-from-left {
-  0% {
-    opacity: 0;
-    transform: translateX(-30%);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes pulse-text {
-  0% {
-    color: #e1dec7;
-  }
-  50% {
-    color: #9f9d83;
-  }
-  100% {
-    color: #e1dec7;
-  }
-}
-
-@keyframes pulse-text-size {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes pulse {
-  0% {
-    border-color: #f6e35a;
-    box-shadow: 0 0 0 0 rgba(246, 227, 90, 0.4);
-  }
-  50% {
-    border-color: #f8c031;
-    box-shadow: 0 0 0 0.5rem rgba(248, 165, 49, 0);
-  }
-  100% {
-    border-color: #f6e35a;
-    box-shadow: 0 0 0 0 rgba(246, 227, 90, 0);
-  }
-}
-
-/* Fancy animation for showing the "Game Over" element */
-@keyframes pop-in {
-  0% {
-    transform: scale(0);
-    opacity: 0;
-  }
-  80% {
-    transform: scale(1.1);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-  }
-}
+<<<<<<<<<<<<<<  ✨ Codeium Command 🌟 >>>>>>>>>>>>>>>>
++/**
++ * Import Google Fonts for the game's typography.
++ */
+ @import url('https://fonts.googleapis.com/css2?family=Caprasimo&family=Roboto+Slab:wght@400;700&display=swap');
+ 
++/**
++ * Reset the default styles of all HTML elements.
++ */
+ * {
+   box-sizing: border-box;
+ }
+ 
++/**
++ * Define the base styles for the HTML element.
++ */
+ html {
+   font-family: 'Roboto Slab', sans-serif;
+   line-height: 1.5;
+-
+   color: #ebe7ef;
+-
+   font-synthesis: none;
+   text-rendering: optimizeLegibility;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   -webkit-text-size-adjust: 100%;
+ }
+ 
++/**
++ * Define the base styles for the body element.
++ */
+ body {
++  background: radial-gradient(circle at top, rgba(241, 210, 70, 0.98), rgba(250, 176, 103, 0.87)),
+-  background: radial-gradient(
+-      circle at top,
+-      rgba(241, 210, 70, 0.98),
+-      rgba(250, 176, 103, 0.87)
+-    ),
+     url('bg-pattern-dark.png');
+   background-repeat: repeat;
++  background-size: 100% 100%, 30% 30%, 100% 100%;
+-  background-size:
+-    100% 100%,
+-    30% 30%,
+-    100% 100%;
+ }
+ 
++/**
++ * Center-align the header element.
++ */
+ header {
+   text-align: center;
+ }
+ 
++/**
++ * Define the styles for the main heading.
++ */
+ h1 {
+   font-family: 'Caprasimo', cursive;
+   font-size: 3rem;
+   margin: 0 auto 1rem auto;
+   color: #3f3b00;
+ 
++  /**
++   * Adjust the font size for smaller screens.
++   */
+   @media (max-width: 450px) {
+     font-size: 2.2rem;
+   }
+ }
+ 
++/**
++ * Define the styles for the game container.
++ */
+ #game-container {
+   max-width: 30rem;
+   margin: 0 auto;
+   padding: 1rem;
+   border-radius: 6px;
+   background: linear-gradient(#383624, #282617);
+   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+   position: relative;
+ }
+ 
++/**
++ * Remove the default list styles.
++ */
+ ol {
+   list-style: none;
+   margin: 0;
+   padding: 0;
+ }
+ 
++/**
++ * Define the styles for the pre-game section.
++ */
+ #pre-game {
+   text-align: center;
+ }
+ 
++/**
++ * Define the styles for the start game button.
++ */
+ #pre-game button {
+   cursor: pointer;
+   background: none;
+   color: #f8c031;
+   border: none;
+   font-family: 'Caprasimo', cursive;
+   font-size: 4rem;
+   text-shadow: 0 0 12px rgba(0, 0, 0, 0.7);
+   animation: pulse-text-size 2s infinite ease-out;
+ }
+ 
++/**
++ * Define the styles for the game hints section.
++ */
+ #game-hints {
+   text-align: center;
+   color: #46432f;
+ }
+ 
++/**
++ * Define the styles for the game hints heading.
++ */
+ #game-hints h2 {
+   font-family: 'Caprasimo', cursive;
+   font-size: 2rem;
+   margin: 0;
+ }
+ 
++/**
++ * Remove the default list styles for the game hints.
++ */
+ #game-hints ul {
+   list-style: none;
+   padding: 0;
+   margin: 0;
+ }
+ 
++/**
++ * Define the styles for the game hints buttons.
++ */
+ #game-hints button {
+   cursor: pointer;
+   border: none;
+   background: transparent;
+   color: #23221f;
+   font: inherit;
+   margin-top: 1.5rem;
+ }
+ 
++/**
++ * Define the animation for sliding in from the left.
++ */
+ @keyframes slide-in-from-left {
+   0% {
+     opacity: 0;
+     transform: translateX(-30%);
+   }
+   100% {
+     opacity: 1;
+     transform: translateX(0);
+   }
+ }
+ 
++/**
++ * Define the animation for pulsing text.
++ */
+ @keyframes pulse-text {
+   0% {
+     color: #e1dec7;
+   }
+   50% {
+     color: #9f9d83;
+   }
+   100% {
+     color: #e1dec7;
+   }
+ }
+ 
++/**
++ * Define the animation for pulsing text size.
++ */
+ @keyframes pulse-text-size {
+   0% {
+     transform: scale(1);
+   }
+   50% {
+     transform: scale(1.05);
+   }
+   100% {
+     transform: scale(1);
+   }
+ }
+ 
++/**
++ * Define the animation for pulsing elements.
++ */
+ @keyframes pulse {
+   0% {
+     border-color: #f6e35a;
+     box-shadow: 0 0 0 0 rgba(246, 227, 90, 0.4);
+   }
+   50% {
+     border-color: #f8c031;
+     box-shadow: 0 0 0 0.5rem rgba(248, 165, 49, 0);
+   }
+   100% {
+     border-color: #f6e35a;
+     box-shadow: 0 0 0 0 rgba(246, 227, 90, 0);
+   }
+ }
+ 
++/**
++ * Define the animation for showing the "Game Over" element.
++ */
+-/* Fancy animation for showing the "Game Over" element */
+ @keyframes pop-in {
+   0% {
+     transform: scale(0);
+     opacity: 0;
+   }
+   80% {
+     transform: scale(1.1);
+     opacity: 1;
+   }
+   100% {
+     transform: scale(1);
+   }
+ }
+ 
+<<<<<<<  3362a268-36a8-41e4-877b-66cabb7c71ce  >>>>>>>

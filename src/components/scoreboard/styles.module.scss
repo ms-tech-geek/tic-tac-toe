@@ -1,61 +1,79 @@
-/* ScoreBoard.module.css */
+/* Styling for the Scoreboard container */
+
 .scoreboardContainer {
+  /* Background gradient and border */
   background: linear-gradient(#383624, #282617);
   border: 1px solid #333;
   border-radius: 8px;
+  /* Padding and text alignment */
   padding: 10px 0 20px 0;
   text-align: center;
+  /* Box shadow */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Maximum width and centering */
   max-width: 30rem;
   margin: 1rem auto;
 
-  h2 {
-    margin: 5px auto;
-  }
-
-  @media (max-width: 450px) {
-    padding: 5px 0 10px 0;
-
-    h2 {
+h2 {
       font-size: 1rem;
       margin: 5px auto;
     }
+  @media (max-width: 450px) {
+    padding: 5px 0 10px 0;
   }
 }
 
+/* Styling for the Scoreboard */
+
 .scoreboard {
+  /* Display and justify content */
   display: flex;
   justify-content: space-around;
 }
 
+/* Styling for the individual player scores */
+
 .playerScore {
+  /* Background, border, and padding */
   background-color: #f6e35a;
   border: 1px solid #f6e35a;
   border-radius: 8px;
   padding: 5px 10px;
+  /* Box shadow */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
+  /* Adjustments for smaller screens */
   @media (max-width: 450px) {
     margin-bottom: 10px;
   }
 }
 
+/* Styling for the player names */
 .playerName {
+  /* Font size and weight */
   font-size: 1rem;
   font-weight: 500;
+  /* Text color */
   color: #333;
 
+  /* Adjustments for smaller screens */
   @media (max-width: 450px) {
     font-size: 0.8rem;
   }
 }
 
+/* Styling for the player scores */
+
 .score {
+  /* Font size and weight */
   font-size: 1.5rem;
   font-weight: 1000;
+  /* Text color */
   color: #333;
 
+  /* Adjustments for smaller screens */
   @media (max-width: 450px) {
     font-size: 1rem;
   }
 }
+

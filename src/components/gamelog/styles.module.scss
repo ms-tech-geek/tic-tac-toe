@@ -1,19 +1,38 @@
+/**
+ * Styles for the game log component
+ */
+
+// Styles for the game log container
 .gameLogContainer {
+  // Maximum width of the game log container
   max-width: 20rem;
+  // Color of the game log container
   color: #3f3b00;
+  // Remove default list style
   list-style: none;
+  // Center the game log container horizontally
   margin: 2rem auto;
+  // Remove padding
   padding: 0;
+  // Center the text in the container
   text-align: center;
 }
 
+// Styles for each game log item
 .gameLog {
+  // Border radius for rounded corners
   border-radius: 4px;
+  // Animates the game log item sliding in from the left
   animation: slide-in-from-left 1s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+  // Margin for each game log item
   margin: 0.75rem;
 
+  // Styles for highlighted game log items
   &.highlighted {
+    // Background color for highlighted game log items
     background-color: #3f3b00;
+    // Text color for highlighted game log items
     color: white;
   }
 }
+

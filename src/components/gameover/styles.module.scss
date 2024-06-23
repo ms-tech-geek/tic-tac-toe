@@ -1,4 +1,6 @@
+/* Container for the game over screen */
 .gameOverContainer {
+  /* Position the container to cover the entire screen */
   position: absolute;
   top: 0;
   left: 0;
@@ -8,9 +10,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  /* Set the background color and animation */
   background-color: rgba(40, 38, 23, 0.95);
   animation: pop-in 0.5s cubic-bezier(0.68, -0.55, 0.65, 0.52) forwards;
 
+  /* Heading for the game over message */
   .heading {
     font-family: 'Caprasimo', cursive;
     font-size: 4rem;
@@ -19,15 +24,20 @@
     margin: 0;
   }
 
+  /* Sub-heading for the game over message */
   .subHeading {
     font-size: 2rem;
     text-align: center;
     color: #e1dec7;
   }
 
+  /* Button for rematch */
   .rematchButton {
+    /* Display the button as a block element and center it horizontally */
     display: block;
     margin: 0 auto;
+
+    /* Set the font size, background, border, color, padding, border radius, cursor, transition, and box shadow */
     font-size: 1.5rem;
     background: none;
     border: 2px solid #fcd256;
@@ -40,6 +50,7 @@
       color 0.2s;
     box-shadow: 0 0 8px rgba(255, 187, 0, 0.4);
 
+    /* Apply different styles on hover */
     &:hover {
       background: #fcd256;
       color: #3f3b00;
@@ -48,3 +59,4 @@
     }
   }
 }
+

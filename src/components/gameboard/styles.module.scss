@@ -1,4 +1,8 @@
+/*
+ * Container for the game board
+ */
 .gameBoardContainer {
+  /* Flexbox properties */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -7,23 +11,33 @@
   padding: 0;
   flex-direction: column;
 
+  /* Responsive styles for smaller screens */
   @media (max-width: 450px) {
     gap: 1rem;
   }
 }
 
+/*
+ * Game board element
+ */
 .gameBoard {
+  /* Flexbox properties */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 2rem;
 
+  /* Responsive styles for smaller screens */
   @media (max-width: 450px) {
     gap: 1rem;
   }
 }
 
+/*
+ * Game card element
+ */
 .gameCard {
+  /* Card size and styling */
   width: 5rem;
   height: 5rem;
   border: none;
@@ -34,13 +48,16 @@
   font-family: 'Caprasimo', cursive;
   padding: 1rem;
 
+  /* Hover effect */
   &:hover {
     border: thick solid #f8ca31;
   }
 
+  /* Responsive styles for smaller screens */
   @media (max-width: 450px) {
     width: 4rem;
     height: 4rem;
     font-size: 1.5rem;
   }
 }
+
