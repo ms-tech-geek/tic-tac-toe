@@ -7,6 +7,11 @@ A simple Tic-Tac-Toe game built with React.
 - Play against a friend
 - Reset the game
 - Keep track of scores
+- Sound effects for game events:
+  - Game move
+  - Win
+  - Draw
+  - Reset
 
 ## Deployment
 
