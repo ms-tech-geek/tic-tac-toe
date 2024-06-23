@@ -1,23 +1,13 @@
-const GameCard = ({ onButtonClick, row, col, symbol }) => (
-  <button
-    onClick={() => onButtonClick(row, col)}
-    disabled={symbol}
-    style={
-      symbol && {
-        cursor: 'not-allowed',
-      }
-    }
-  >
-    {symbol}
-  </button>
-);
+import React from 'react';
+import GameCard from './GameCard';
+import styles from './styles.module.scss';
 
 const GameBoard = ({ onSelectSquare, board }) => {
   return (
-    <ol id="game-board">
+    <ol className={styles.gameBoardContainer}>
       {board.map((row, rowIndex) => (
         <li key={rowIndex}>
-          <ol>
+          <ol className={styles.gameBoard}>
             {row.map((activePlayerSymbol, colIndex) => (
               <li key={colIndex}>
                 <GameCard

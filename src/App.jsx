@@ -5,7 +5,7 @@ import {
   deriveGameBoard,
 } from './hooks/gameLogic';
 import ScoreBoard from './components/scoreboard/ScoreBoard';
-import GameBoard from './components/GameBoard';
+import GameBoard from './components/gameboard/GameBoard';
 import Log from './components/Log';
 import GameOver from './components/GameOver';
 import moveSound from './assets/sounds/move.mp3';

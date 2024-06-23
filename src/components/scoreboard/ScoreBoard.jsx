@@ -1,4 +1,3 @@
-// ScoreBoard.jsx
 import React from 'react';
 import styles from './styles.module.scss';
 

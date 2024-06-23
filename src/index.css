@@ -25,7 +25,10 @@ body {
     ),
     url('bg-pattern-dark.png');
   background-repeat: repeat;
-  background-size: 100% 100%, 30% 30%, 100% 100%;
+  background-size:
+    100% 100%,
+    30% 30%,
+    100% 100%;
 }
 
 header {
@@ -74,55 +77,6 @@ ol {
   animation: pulse-text-size 2s infinite ease-out;
 }
 
-#game-board {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-  margin: 3rem 0;
-  padding: 0;
-  flex-direction: column;
-
-  @media (max-width: 450px) {
-    gap: 1rem;
-  }
-}
-
-#game-board ol {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-  margin: 0;
-  padding: 0;
-
-  @media (max-width: 450px) {
-    gap: 1rem;
-  }
-}
-
-#game-board button {
-  width: 8rem;
-  height: 8rem;
-  border: none;
-  background: #aca788;
-  color: #3f3b00;
-  font-size: 5rem;
-  cursor: pointer;
-  font-family: 'Caprasimo', cursive;
-  padding: 1rem;
-
-  @media (max-width: 450px) {
-    width: 5rem;
-    height: 5rem;
-    font-size: 2rem;
-  }
-}
-
-#game-board button:hover {
-  border: thick solid #f8ca31;
-}
-
 #game-over {
   position: absolute;
   top: 0;
@@ -161,7 +115,9 @@ ol {
   padding: 0.5rem 1rem;
   border-radius: 4px;
   cursor: pointer;
-  transition: all 0.2s, color 0.2s;
+  transition:
+    all 0.2s,
+    color 0.2s;
   box-shadow: 0 0 8px rgba(255, 187, 0, 0.4);
 }
 
