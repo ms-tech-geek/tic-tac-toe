@@ -6,7 +6,7 @@ import {
 } from './hooks/gameLogic';
 import ScoreBoard from './components/scoreboard/ScoreBoard';
 import GameBoard from './components/gameboard/GameBoard';
-import Log from './components/Log';
+import GameLog from './components/gamelog/GameLog';
 import GameOver from './components/gameover/GameOver';
 import moveSound from './assets/sounds/move.mp3';
 import winSound from './assets/sounds/win.aac';
@@ -120,7 +120,7 @@ const App = () => {
         )}
         <GameBoard onSelectSquare={handleSelectSquare} board={gameBoard} />
       </div>
-      <Log turns={gameTurns} />
+      <GameLog turns={gameTurns} />
     </main>
   );
 };
