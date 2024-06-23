@@ -60,6 +60,18 @@ export default defineConfig({
             type: 'image/png',
             form_factor: 'wide',
           },
+          {
+            src: 'screenshot3.png',
+            sizes: '320x480',
+            type: 'image/png',
+            form_factor: 'narrow',
+          },
+          {
+            src: 'screenshot4.png',
+            sizes: '320x480',
+            type: 'image/png',
+            form_factor: 'narrow',
+          },
         ],
         start_url: '.',
         display: 'standalone',
