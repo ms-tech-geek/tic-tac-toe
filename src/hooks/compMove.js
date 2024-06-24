@@ -12,7 +12,15 @@ const getAvailableMoves = (board) => {
   return moves;
 };
 
-export const minimax = (board, depth, isMaximizing, player, opponent) => {
+export const minimax = (
+  board,
+  depth,
+  isMaximizing,
+  alpha,
+  beta,
+  player,
+  opponent
+) => {
   const winner = deriveWinner({
     gameBoard: board,
     players: { X: player, O: opponent },
@@ -30,18 +38,42 @@ export const minimax = (board, depth, isMaximizing, player, opponent) => {
     let bestScore = -Infinity;
     getAvailableMoves(board).forEach(({ row, col }) => {
       board[row][col] = player;
-      const score = minimax(board, depth + 1, false, player, opponent);
+      const score = minimax(
+        board,
+        depth + 1,
+        false,
+        alpha,
+        beta,
+        player,
+        opponent
+      );
       board[row][col] = null;
       bestScore = Math.max(score, bestScore);
+      alpha = Math.max(alpha, score);
+      if (beta <= alpha) {
+        return bestScore;
+      }
     });
     return bestScore;
   } else {
     let bestScore = Infinity;
     getAvailableMoves(board).forEach(({ row, col }) => {
       board[row][col] = opponent;
-      const score = minimax(board, depth + 1, true, player, opponent);
+      const score = minimax(
+        board,
+        depth + 1,
+        true,
+        alpha,
+        beta,
+        player,
+        opponent
+      );
       board[row][col] = null;
       bestScore = Math.min(score, bestScore);
+      beta = Math.min(beta, score);
+      if (beta <= alpha) {
+        return bestScore;
+      }
     });
     return bestScore;
   }
@@ -52,7 +84,15 @@ export const findBestMove = (board, player, opponent) => {
   let bestMove = null;
   getAvailableMoves(board).forEach(({ row, col }) => {
     board[row][col] = player;
-    const score = minimax(board, 0, false, player, opponent);
+    const score = minimax(
+      board,
+      0,
+      false,
+      -Infinity,
+      Infinity,
+      player,
+      opponent
+    );
     board[row][col] = null;
     if (score > bestScore) {
       bestScore = score;

@@ -15,7 +15,6 @@ import drawSound from '/assets/sounds/draw.aac';
 import resetSound from '/assets/sounds/reset.ogg';
 import PlayersBoard from './components/players/PlayersBoard';
 import GameModeSelector from './components/gamemode/GameModeSelector';
-
 import styles from './styles.module.scss';
 
 const DEBUG = false;
@@ -73,6 +72,8 @@ const App = () => {
         O: 'Computer',
       });
     }
+    setGameTurns([]); // Reset the game turns when mode is selected
+    setIsComputerTurn(false); // Reset computer turn when mode is selected
   };
 
   const handleSelectSquare = (rowIndex, colIndex) => {
@@ -185,6 +186,7 @@ const App = () => {
       setIsComputerTurn(false);
     }, 500);
   };
+
   return (
     <main>
       {gameMode === null && (
