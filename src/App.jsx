@@ -15,6 +15,7 @@ import resetSound from '/assets/sounds/reset.ogg';
 import PlayersBoard from './components/players/PlayersBoard';
 import GameModeSelector from './components/gamemode/GameModeSelector';
 import styles from './styles.module.scss';
+
 const DEBUG = false;
 
 const initialPlayers = {
@@ -27,6 +28,8 @@ const App = () => {
   const [players, setPlayers] = useState(initialPlayers);
   const [gameTurns, setGameTurns] = useState([]);
   const [scoreBoard, setScoreBoard] = useState({ X: 0, O: 0 });
+  const [isComputerTurn, setIsComputerTurn] = useState(false);
+
   const activePlayer = useMemo(
     () => deriveActivePlayer(gameTurns),
     [gameTurns]
@@ -62,9 +65,22 @@ const App = () => {
   const handleSelectMode = (mode) => {
     console.log(`Game mode selected: ${mode}`);
     setGameMode(() => mode);
+    if (mode === 'pvc') {
+      setPlayers({
+        X: 'Player 1',
+        O: 'Computer',
+      });
+    }
   };
 
   const handleSelectSquare = (rowIndex, colIndex) => {
+    if (
+      gameBoard[rowIndex][colIndex] ||
+      winner ||
+      (isComputerTurn && gameMode === 'pvc')
+    )
+      return;
+
     DEBUG && console.log('handleSelectSquare called');
     DEBUG && console.log('rowIndex:', rowIndex);
     DEBUG && console.log('colIndex:', colIndex);
@@ -83,6 +99,9 @@ const App = () => {
         ...prevTurns,
       ];
 
+      if (gameMode === 'pvc' && currentPlayer === 'X') {
+        setIsComputerTurn(true);
+      }
       DEBUG && console.log('Updated turns:', updatedTurns);
       return updatedTurns;
     });
@@ -92,9 +111,13 @@ const App = () => {
     DEBUG && console.log('handleRematch called');
     playResetSound();
     setGameTurns([]);
+    setIsComputerTurn(false);
   };
 
   const updatePlayerName = (prevPlayers, symbol, playerName) => {
+    DEBUG && console.log('prevPlayers:', prevPlayers);
+    DEBUG && console.log('symbol:', symbol);
+    DEBUG && console.log('playerName:', playerName);
     return {
       ...prevPlayers,
       [symbol]: playerName,
@@ -134,18 +157,52 @@ const App = () => {
     }
   }, [winner, players]);
 
-  console.log('gameMode:', gameMode);
+  useEffect(() => {
+    if (isComputerTurn && gameMode === 'pvc') {
+      playMoveSound();
+      makeComputerMove();
+    }
+  }, [isComputerTurn, gameMode]);
+
+  const makeComputerMove = () => {
+    setTimeout(() => {
+      const emptySquares = [];
+      const gameBoard = deriveGameBoard(gameTurns);
+
+      gameBoard.forEach((row, rowIndex) =>
+        row.forEach((cell, colIndex) => {
+          if (cell === null)
+            emptySquares.push({ row: rowIndex, col: colIndex });
+        })
+      );
+
+      if (emptySquares.length === 0) return;
+
+      const randomIndex = Math.floor(Math.random() * emptySquares.length);
+      const { row, col } = emptySquares[randomIndex];
+
+      setGameTurns((prevTurns) => [
+        {
+          square: { row, col },
+          player: 'O',
+        },
+        ...prevTurns,
+      ]);
+
+      setIsComputerTurn(false);
+    }, 500);
+  };
 
   return (
     <main>
       {gameMode === null && (
         <GameModeSelector onSelectMode={handleSelectMode} />
       )}
-      {gameMode === 'pvp' && (
+      {gameMode && (
         <>
           <ScoreBoard players={players} scoreBoard={scoreBoard} />
           <PlayersBoard
-            initialPlayers={initialPlayers}
+            initialPlayers={players}
             activePlayer={activePlayer}
             handlePlayerNameChange={handlePlayerNameChange}
           />
@@ -158,11 +215,6 @@ const App = () => {
           </div>
           <GameLog turns={gameTurns} />
         </>
-      )}
-      {gameMode === 'pvc' && (
-        <div className={styles.underDevelopment}>
-          <h2>THIS FEATURE IS UNDER DEVELOPMENT</h2>
-        </div>
       )}
     </main>
   );
