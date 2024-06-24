@@ -1,6 +1,5 @@
 /* Container for the game over screen */
 .gameOverContainer {
-  /* Position the container to cover the entire screen */
   position: absolute;
   top: 0;
   left: 0;
@@ -10,8 +9,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  /* Set the background color and animation */
   background-color: rgba(40, 38, 23, 0.95);
   animation: pop-in 0.5s cubic-bezier(0.68, -0.55, 0.65, 0.52) forwards;
 
@@ -22,6 +19,7 @@
     text-align: center;
     color: #fcd256;
     margin: 0;
+    animation: fade-in 1s ease-in-out forwards;
 
     /* Media query for smaller screens */
     @media (max-width: 450px) {
@@ -34,6 +32,7 @@
     font-size: 2rem;
     text-align: center;
     color: #e1dec7;
+    animation: fade-in 1.5s ease-in-out forwards;
 
     /* Media query for smaller screens */
     @media (max-width: 450px) {
@@ -43,11 +42,8 @@
 
   /* Button for rematch */
   .rematchButton {
-    /* Display the button as a block element and center it horizontally */
     display: block;
     margin: 0 auto;
-
-    /* Set the font size, background, border, color, padding, border radius, cursor, transition, and box shadow */
     font-size: 1.5rem;
     background: none;
     border: 2px solid #fcd256;
@@ -59,6 +55,7 @@
       all 0.2s,
       color 0.2s;
     box-shadow: 0 0 8px rgba(255, 187, 0, 0.4);
+    animation: bounce-in 0.5s ease-in-out forwards;
 
     /* Media query for smaller screens */
     @media (max-width: 450px) {
@@ -94,5 +91,34 @@
   }
   100% {
     transform: scale(1);
+  }
+}
+
+/**
+ * Define the fade-in animation.
+ */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/**
+ * Define the bounce-in animation for the rematch button.
+ */
+@keyframes bounce-in {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(10px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
   }
 }
