@@ -71,11 +71,18 @@ h1 {
 #game-container {
   max-width: 30rem;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 3rem;
   border-radius: 6px;
   background: linear-gradient(#383624, #282617);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   position: relative;
+
+  /**
+   * Adjust the font size for smaller screens.
+   */
+  @media (max-width: 300px) {
+    padding: 1rem;
+  }
 }
 
 /**

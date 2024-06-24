@@ -22,6 +22,13 @@
     text-align: center;
     color: #fcd256;
     margin: 0;
+
+    /* Media query for smaller screens */
+    @media (max-width: 450px) {
+      font-size: 2.5rem;
+    }
+
+
   }
 
   /* Sub-heading for the game over message */
@@ -29,6 +36,11 @@
     font-size: 2rem;
     text-align: center;
     color: #e1dec7;
+
+    /* Media query for smaller screens */
+    @media (max-width: 450px) {
+      font-size: 1.5rem;
+    }
   }
 
   /* Button for rematch */
@@ -50,12 +62,22 @@
       color 0.2s;
     box-shadow: 0 0 8px rgba(255, 187, 0, 0.4);
 
+    /* Media query for smaller screens */
+    @media (max-width: 450px) {
+      font-size: 1rem;
+    }
+
     /* Apply different styles on hover */
     &:hover {
       background: #fcd256;
       color: #3f3b00;
       transform: scale(1.1);
       box-shadow: 0 0 20px rgba(255, 187, 0, 0.8);
+
+      /* Media query for smaller screens */
+      @media (max-width: 450px) {
+        transform: scale(1);
+      }
     }
   }
 }
