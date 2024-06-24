@@ -36,3 +36,16 @@
   }
 }
 
+/**
+ * Define the animation for sliding in from the left.
+ */
+@keyframes slide-in-from-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-30%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
