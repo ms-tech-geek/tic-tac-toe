@@ -68,7 +68,7 @@ h1 {
 /**
  * Define the styles for the game container.
  */
-#game-container {
+.gameContainer {
   max-width: 30rem;
   margin: 0 auto;
   padding: 3rem;
@@ -94,64 +94,7 @@ ol {
   padding: 0;
 }
 
-/**
- * Define the styles for the pre-game section.
- */
-#pre-game {
-  text-align: center;
-}
 
-/**
- * Define the styles for the start game button.
- */
-#pre-game button {
-  cursor: pointer;
-  background: none;
-  color: #f8c031;
-  border: none;
-  font-family: 'Caprasimo', cursive;
-  font-size: 4rem;
-  text-shadow: 0 0 12px rgba(0, 0, 0, 0.7);
-  animation: pulse-text-size 2s infinite ease-out;
-}
-
-/**
- * Define the styles for the game hints section.
- */
-#game-hints {
-  text-align: center;
-  color: #46432f;
-}
-
-/**
- * Define the styles for the game hints heading.
- */
-#game-hints h2 {
-  font-family: 'Caprasimo', cursive;
-  font-size: 2rem;
-  margin: 0;
-}
-
-/**
- * Remove the default list styles for the game hints.
- */
-#game-hints ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-/**
- * Define the styles for the game hints buttons.
- */
-#game-hints button {
-  cursor: pointer;
-  border: none;
-  background: transparent;
-  color: #23221f;
-  font: inherit;
-  margin-top: 1.5rem;
-}
 
 /**
  * Define the animation for sliding in from the left.

@@ -13,7 +13,7 @@ import winSound from '/assets/sounds/win.aac';
 import drawSound from '/assets/sounds/draw.aac';
 import resetSound from '/assets/sounds/reset.ogg';
 import PlayersBoard from './components/players/PlayersBoard';
-
+import styles from './styles.module.scss';
 const DEBUG = false;
 
 const initialPlayers = {
@@ -135,7 +135,7 @@ const App = () => {
         activePlayer={activePlayer}
         handlePlayerNameChange={handlePlayerNameChange}
       />
-      <div id="game-container">
+      <div className={styles.gameContainer}>
         {(winner || hasDraw) && (
           <GameOver winner={winner} onRematch={handleRematch} />
         )}
