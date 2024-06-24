@@ -1,0 +1,42 @@
+.gameModeSelector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .button {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.5rem;
+    background: #4b4b4b;
+    color: #fcd256;
+    border: 2px solid #fcd256;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin: 0.5rem 0;
+
+    &:hover {
+      background: #fcd256;
+      color: #3f3b00;
+      transform: scale(1.05);
+    }
+  }
+}
+
+.underDevelopment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  color: #fcd256;
+
+  h2 {
+    font-size: 2rem;
+  }
+}

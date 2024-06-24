@@ -13,6 +13,7 @@ import winSound from '/assets/sounds/win.aac';
 import drawSound from '/assets/sounds/draw.aac';
 import resetSound from '/assets/sounds/reset.ogg';
 import PlayersBoard from './components/players/PlayersBoard';
+import GameModeSelector from './components/gamemode/GameModeSelector';
 import styles from './styles.module.scss';
 const DEBUG = false;
 
@@ -22,6 +23,7 @@ const initialPlayers = {
 };
 
 const App = () => {
+  const [gameMode, setGameMode] = useState(null);
   const [players, setPlayers] = useState(initialPlayers);
   const [gameTurns, setGameTurns] = useState([]);
   const [scoreBoard, setScoreBoard] = useState({ X: 0, O: 0 });
@@ -56,6 +58,11 @@ const App = () => {
     DEBUG && console.log('Playing draw sound');
     playDrawSound();
   }
+
+  const handleSelectMode = (mode) => {
+    console.log(`Game mode selected: ${mode}`);
+    setGameMode(() => mode);
+  };
 
   const handleSelectSquare = (rowIndex, colIndex) => {
     DEBUG && console.log('handleSelectSquare called');
@@ -127,21 +134,36 @@ const App = () => {
     }
   }, [winner, players]);
 
+  console.log('gameMode:', gameMode);
+
   return (
     <main>
-      <ScoreBoard players={players} scoreBoard={scoreBoard} />
-      <PlayersBoard
-        initialPlayers={initialPlayers}
-        activePlayer={activePlayer}
-        handlePlayerNameChange={handlePlayerNameChange}
-      />
-      <div className={styles.gameContainer}>
-        {(winner || hasDraw) && (
-          <GameOver winner={winner} onRematch={handleRematch} />
-        )}
-        <GameBoard onSelectSquare={handleSelectSquare} board={gameBoard} />
-      </div>
-      <GameLog turns={gameTurns} />
+      {gameMode === null && (
+        <GameModeSelector onSelectMode={handleSelectMode} />
+      )}
+      {gameMode === 'pvp' && (
+        <>
+          <ScoreBoard players={players} scoreBoard={scoreBoard} />
+          <PlayersBoard
+            initialPlayers={initialPlayers}
+            activePlayer={activePlayer}
+            handlePlayerNameChange={handlePlayerNameChange}
+          />
+          <div className={styles.gameContainer}>
+            {(winner || hasDraw) && (
+              <GameOver winner={winner} onRematch={handleRematch} />
+            )}
+
+            <GameBoard onSelectSquare={handleSelectSquare} board={gameBoard} />
+          </div>
+          <GameLog turns={gameTurns} />
+        </>
+      )}
+      {gameMode === 'pvc' && (
+        <div className={styles.underDevelopment}>
+          <h2>THIS FEATURE IS UNDER DEVELOPMENT</h2>
+        </div>
+      )}
     </main>
   );
 };
