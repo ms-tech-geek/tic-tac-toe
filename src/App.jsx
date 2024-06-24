@@ -4,6 +4,7 @@ import {
   deriveWinner,
   deriveGameBoard,
 } from './hooks/gameLogic';
+import { findBestMove } from './hooks/compMove';
 import ScoreBoard from './components/scoreboard/ScoreBoard';
 import GameBoard from './components/gameboard/GameBoard';
 import GameLog from './components/gamelog/GameLog';
@@ -14,6 +15,7 @@ import drawSound from '/assets/sounds/draw.aac';
 import resetSound from '/assets/sounds/reset.ogg';
 import PlayersBoard from './components/players/PlayersBoard';
 import GameModeSelector from './components/gamemode/GameModeSelector';
+
 import styles from './styles.module.scss';
 
 const DEBUG = false;
@@ -166,33 +168,23 @@ const App = () => {
 
   const makeComputerMove = () => {
     setTimeout(() => {
-      const emptySquares = [];
-      const gameBoard = deriveGameBoard(gameTurns);
+      const board = deriveGameBoard(gameTurns);
 
-      gameBoard.forEach((row, rowIndex) =>
-        row.forEach((cell, colIndex) => {
-          if (cell === null)
-            emptySquares.push({ row: rowIndex, col: colIndex });
-        })
-      );
-
-      if (emptySquares.length === 0) return;
-
-      const randomIndex = Math.floor(Math.random() * emptySquares.length);
-      const { row, col } = emptySquares[randomIndex];
-
-      setGameTurns((prevTurns) => [
-        {
-          square: { row, col },
-          player: 'O',
-        },
-        ...prevTurns,
-      ]);
+      const bestMove = findBestMove(board, 'O', 'X');
+      if (bestMove) {
+        const { row, col } = bestMove;
+        setGameTurns((prevTurns) => [
+          {
+            square: { row, col },
+            player: 'O',
+          },
+          ...prevTurns,
+        ]);
+      }
 
       setIsComputerTurn(false);
     }, 500);
   };
-
   return (
     <main>
       {gameMode === null && (
