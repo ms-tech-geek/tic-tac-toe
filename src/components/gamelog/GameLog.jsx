@@ -1,12 +1,18 @@
 import styles from './styles.module.scss';
 
-const GameLogItem = ({ turn }) => (
-  <li className={styles.gameLog}>
-    {turn.player} selected {turn.square.row},{turn.square.col}
-  </li>
-);
+const DEBUG = false;
+
+const GameLogItem = ({ turn }) => {
+  DEBUG && console.log('Rendering GameLogItem with turn:', turn);
+  return (
+    <li className={styles.gameLog}>
+      {turn.player} selected {turn.square.row},{turn.square.col}
+    </li>
+  );
+};
 
 const GameLog = ({ turns }) => {
+  DEBUG && console.log('Rendering GameLog with turns:', turns);
   return (
     <ol className={styles.gameLogContainer}>
       {turns.map((turn) => (

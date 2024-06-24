@@ -1,11 +1,18 @@
 import PlayerCard from './PlayerCard';
 import styles from './styles.module.scss';
 
+const DEBUG = false;
+
 const PlayersBoard = ({
   initialPlayers,
   activePlayer,
   handlePlayerNameChange,
 }) => {
+  DEBUG && console.log('PlayersBoard rendered');
+  DEBUG && console.log('initialPlayers:', initialPlayers);
+  DEBUG && console.log('activePlayer:', activePlayer);
+  DEBUG && console.log('handlePlayerNameChange:', handlePlayerNameChange);
+
   const { X, O } = initialPlayers;
 
   return (
