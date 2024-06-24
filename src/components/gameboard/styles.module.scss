@@ -51,12 +51,11 @@
     inset 0 0 10px rgba(255, 255, 255, 0.2); /* Outer and inner shadows for depth */
 
   &.marked {
-    animation: mark-animation 0.5s ease;
+    animation: mark-animation 0.2s ease;
   }
 
   &:hover {
     border: thick solid #f8ca31;
-    transform: translateY(-5px) scale(1.05); /* Lift and scale on hover */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6); /* Stronger shadow on hover */
   }
 
