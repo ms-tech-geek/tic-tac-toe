@@ -29,10 +29,10 @@ html {
  */
 body {
   background: radial-gradient(
-      circle at top,
-      rgba(241, 210, 70, 0.98),
-      rgba(250, 176, 103, 0.87)
-    );
+    circle at top,
+    rgba(241, 210, 70, 0.98),
+    rgba(250, 176, 103, 0.87)
+  );
   background-attachment: fixed;
   background-position: center;
   background-repeat: repeat;
@@ -41,7 +41,6 @@ body {
     30% 30%,
     100% 100%;
 }
-
 
 /**
  * Center-align the header element.
