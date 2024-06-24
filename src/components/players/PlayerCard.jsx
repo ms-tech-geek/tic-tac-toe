@@ -35,7 +35,11 @@ const PlayerCard = ({ initialName, symbol, isActive, onChangeName }) => {
   DEBUG && console.log('isEditing:', isEditing);
 
   return (
-    <li className={`${styles.playerCard}`}>
+    <li
+      className={`${styles.playerCard} ${
+        isActive ? styles.activePlayer : undefined
+      }`}
+    >
       <span className={styles.playerNameContainer}>
         {isEditing ? (
           <input

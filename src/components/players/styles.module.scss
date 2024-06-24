@@ -4,114 +4,81 @@
 
 /* Styles for the players container */
 .players {
-  // Background gradient
   background: linear-gradient(#383624, #282617);
-  // Rounded corners
-  border-radius: 8px;
-  // No padding
   padding: 0;
-  // Centered with margin
   margin: 1rem auto;
-  // Flex layout for centering
   display: flex;
   justify-content: center;
   align-items: center;
-  // Maximum width
   max-width: 30rem;
-}
+  border-radius: 8px;
+  border: 5px solid transparent;
 
-/* Styles for the player card */
-.playerCard {
-  // Flex layout for centering
-  display: flex;
-  align-items: center;
-  // Width of 50%
-  width: 50%;
-  // Transparent border
-  border: 2px solid transparent;
-  // Centered text
-  text-align: center;
-  justify-content: center;
-}
+  .playerCard {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    text-align: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
 
-/* Styles for the active player */
-.activePlayer {
-  // Yellow color
-  color: #f6e35a !important;
+    &.activePlayer {
+      background: linear-gradient(#f6e35a, #f6e35a);
+      transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+    }
+  }
 }
 
 /* Styles for the player name container */
 .playerNameContainer {
-  // Transparent border
-  border: 2px solid transparent;
-  // Padding
   padding: 0.5rem;
-  // Rounded corners
-  border-radius: 4px;
-  // Bold font weight
   font-weight: bold;
 
   /* Media query for smaller screens */
   @media (max-width: 450px) {
-    // No padding
     padding: 0;
   }
 }
 
 /* Styles for the player name input field */
 .playerNameInputField {
-  // Inherited font
   font: inherit;
-  // Font size
   font-size: 1rem;
-  // Width
   width: 10rem;
-  // No border
   border: none;
-  // Padding
   padding: 0.5rem;
-  // Pulse animation
   animation: pulse-text 2s infinite;
-  // Dark background color
   background-color: #46432f;
-  // Centered text
   text-align: center;
-  // Uppercase text
   text-transform: uppercase;
 
   /* Media query for smaller screens */
   @media (max-width: 450px) {
-    // Reduced width
     width: 7rem;
   }
 }
 
 /* Styles for the player name */
 .playerName {
-  // Inline block display
   display: inline-block;
-  // Width
   width: 10rem;
-  // Font size
   font-size: 1rem;
-  // Light gray color
   color: #e1dec7;
-  // Uppercase text
   text-transform: uppercase;
-  // No margin
   margin: 0;
-  // Padding
   padding: 0.5rem;
-  // Rounded corners
   border-radius: 4px;
-  // Ellipsis overflow
   text-overflow: ellipsis;
-  // Centered text
   text-align: center;
+
+  &.activePlayer {
+    color: #282617;
+  }
 
   /* Media query for smaller screens */
   @media (max-width: 450px) {
-    // Reduced width and font size
     width: 5rem;
     font-size: 0.8rem;
     padding: 0;
@@ -120,43 +87,34 @@
 
 /* Styles for the player symbol */
 .playerSymbol {
-  // Font size
   font-size: 1rem;
-  // Light gray color
   color: #e1dec7;
+
+  &.activePlayer {
+    color: #282617;
+  }
 
   /* Media query for smaller screens */
   @media (max-width: 450px) {
-    // Centered text
     text-align: center;
-    // Reduced font size
     font-size: 0.8rem;
   }
 }
 
 /* Styles for the player name edit button */
 .playerNameEdit {
-  // Width of 3rem
   width: 3rem;
-  // No border or background
   border: none;
   background: none;
-  // Yellow color
   color: #c3ba78;
-  // Font size
   font-size: 0.9rem;
-  // Cursor pointer
   cursor: pointer;
-  // Transition animation for color
   transition: color 0.2s;
-  // Padding
   padding: 0.5rem 0.25rem 0.25rem 0.25rem;
-  // Centered text
   text-align: center;
 
   /* Hover effect */
   &:hover {
-    // Dark yellow color
     color: #f8ca31;
   }
 }
