@@ -12,92 +12,44 @@ const getAvailableMoves = (board) => {
   return moves;
 };
 
-export const minimax = (
-  board,
-  depth,
-  isMaximizing,
-  alpha,
-  beta,
-  player,
-  opponent
-) => {
-  const winner = deriveWinner({
-    gameBoard: board,
-    players: { X: player, O: opponent },
-  });
-
-  if (winner) {
-    return winner === player ? 10 - depth : depth - 10;
-  }
-
-  if (board.flat().every((cell) => cell !== null)) {
-    return 0; // Draw
-  }
-
-  if (isMaximizing) {
-    let bestScore = -Infinity;
-    getAvailableMoves(board).forEach(({ row, col }) => {
-      board[row][col] = player;
-      const score = minimax(
-        board,
-        depth + 1,
-        false,
-        alpha,
-        beta,
-        player,
-        opponent
-      );
-      board[row][col] = null;
-      bestScore = Math.max(score, bestScore);
-      alpha = Math.max(alpha, score);
-      if (beta <= alpha) {
-        return bestScore;
+const checkImmediateWin = (board, player) => {
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      if (board[i][j] === null) {
+        board[i][j] = player;
+        const winner = deriveWinner({
+          gameBoard: board,
+          players: { X: player, O: player },
+        });
+        board[i][j] = null;
+        if (winner === player) {
+          return { row: i, col: j };
+        }
       }
-    });
-    return bestScore;
-  } else {
-    let bestScore = Infinity;
-    getAvailableMoves(board).forEach(({ row, col }) => {
-      board[row][col] = opponent;
-      const score = minimax(
-        board,
-        depth + 1,
-        true,
-        alpha,
-        beta,
-        player,
-        opponent
-      );
-      board[row][col] = null;
-      bestScore = Math.min(score, bestScore);
-      beta = Math.min(beta, score);
-      if (beta <= alpha) {
-        return bestScore;
-      }
-    });
-    return bestScore;
+    }
   }
+  return null;
 };
 
-export const findBestMove = (board, player, opponent) => {
-  let bestScore = -Infinity;
-  let bestMove = null;
-  getAvailableMoves(board).forEach(({ row, col }) => {
-    board[row][col] = player;
-    const score = minimax(
-      board,
-      0,
-      false,
-      -Infinity,
-      Infinity,
-      player,
-      opponent
-    );
-    board[row][col] = null;
-    if (score > bestScore) {
-      bestScore = score;
-      bestMove = { row, col };
+const getOptimalMoves = (board) => {
+  const moves = getAvailableMoves(board);
+  const priority = {
+    center: [],
+    corners: [],
+    sides: [],
+  };
+
+  moves.forEach(({ row, col }) => {
+    if (row === 1 && col === 1) {
+      priority.center.push({ row, col });
+    } else if ((row === 0 || row === 2) && (col === 0 || col === 2)) {
+      priority.corners.push({ row, col });
+    } else {
+      priority.sides.push({ row, col });
     }
   });
-  return bestMove;
+
+  return [...priority.center, ...priority.corners, ...priority.sides];
 };
+
+export { getAvailableMoves, checkImmediateWin, getOptimalMoves };

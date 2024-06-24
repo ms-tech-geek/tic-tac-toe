@@ -4,7 +4,11 @@ import {
   deriveWinner,
   deriveGameBoard,
 } from './hooks/gameLogic';
-import { findBestMove } from './hooks/compMove';
+import {
+  checkImmediateWin,
+  getOptimalMoves,
+  getAvailableMoves,
+} from './hooks/compMove';
 import ScoreBoard from './components/scoreboard/ScoreBoard';
 import GameBoard from './components/gameboard/GameBoard';
 import GameLog from './components/gamelog/GameLog';
@@ -171,9 +175,38 @@ const App = () => {
     setTimeout(() => {
       const board = deriveGameBoard(gameTurns);
 
-      const bestMove = findBestMove(board, 'O', 'X');
-      if (bestMove) {
-        const { row, col } = bestMove;
+      // Check for immediate win for computer
+      let move = checkImmediateWin(board, 'O');
+      if (move) {
+        setGameTurns((prevTurns) => [
+          {
+            square: { row: move.row, col: move.col },
+            player: 'O',
+          },
+          ...prevTurns,
+        ]);
+        setIsComputerTurn(false);
+        return;
+      }
+
+      // Check for immediate win for opponent
+      move = checkImmediateWin(board, 'X');
+      if (move) {
+        setGameTurns((prevTurns) => [
+          {
+            square: { row: move.row, col: move.col },
+            player: 'O',
+          },
+          ...prevTurns,
+        ]);
+        setIsComputerTurn(false);
+        return;
+      }
+
+      // Get optimal moves
+      const optimalMoves = getOptimalMoves(board);
+      if (optimalMoves.length > 0) {
+        const { row, col } = optimalMoves[0];
         setGameTurns((prevTurns) => [
           {
             square: { row, col },
