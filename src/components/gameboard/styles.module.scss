@@ -2,7 +2,6 @@
  * Container for the game board
  */
 .gameBoardContainer {
-  /* Flexbox properties */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -11,7 +10,6 @@
   padding: 0;
   flex-direction: column;
 
-  /* Responsive styles for smaller screens */
   @media (max-width: 450px) {
     gap: 1rem;
   }
@@ -21,13 +19,11 @@
  * Game board element
  */
 .gameBoard {
-  /* Flexbox properties */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 2rem;
 
-  /* Responsive styles for smaller screens */
   @media (max-width: 450px) {
     gap: 1rem;
   }
@@ -37,7 +33,6 @@
  * Game card element
  */
 .gameCard {
-  /* Card size and styling */
   width: 5rem;
   height: 5rem;
   border: none;
@@ -50,19 +45,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s ease-in-out;
+  border-radius: 8px;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.4),
+    inset 0 0 10px rgba(255, 255, 255, 0.2); /* Outer and inner shadows for depth */
 
-  /* Animation on mark */
   &.marked {
     animation: mark-animation 0.5s ease;
   }
 
-  /* Hover effect */
   &:hover {
     border: thick solid #f8ca31;
+    transform: translateY(-5px) scale(1.05); /* Lift and scale on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6); /* Stronger shadow on hover */
   }
 
-  /* Responsive styles for smaller screens */
   @media (max-width: 450px) {
     width: 4rem;
     height: 4rem;
