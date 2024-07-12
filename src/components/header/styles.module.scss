@@ -1,0 +1,11 @@
+.headerTitle {
+  font-family: 'Caprasimo', cursive;
+  font-size: 3rem;
+  margin: 0 auto 1rem auto;
+  color: #3f3b00;
+  text-align: center;
+
+  @media (max-width: 450px) {
+    font-size: 2.2rem;
+  }
+}

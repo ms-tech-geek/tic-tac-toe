@@ -1,7 +1,9 @@
+import styles from './styles.module.scss';
+
 const Header = () => {
   return (
     <header>
-      <h1>Tic-Tac-Toe</h1>
+      <h1 className={styles.headerTitle}>Tic-Tac-Toe</h1>
     </header>
   );
 };
