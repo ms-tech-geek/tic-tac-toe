@@ -4,14 +4,9 @@ import {
   deriveWinner,
   deriveGameBoard,
 } from './hooks/gameLogic';
-import {
-  checkImmediateWin,
-  getOptimalMoves,
-  getAvailableMoves,
-} from './hooks/compMove';
+import { checkImmediateWin, getOptimalMoves } from './hooks/compMove';
 import ScoreBoard from './components/scoreboard/ScoreBoard';
 import GameBoard from './components/gameboard/GameBoard';
-import GameLog from './components/gamelog/GameLog';
 import GameOver from './components/gameover/GameOver';
 import moveSound from '/assets/sounds/move.mp3';
 import winSound from '/assets/sounds/win.aac';
@@ -119,6 +114,7 @@ const App = () => {
     playResetSound();
     setGameTurns([]);
     setIsComputerTurn(false);
+    setGameMode(null);
   };
 
   const updatePlayerName = (prevPlayers, symbol, playerName) => {
@@ -166,7 +162,6 @@ const App = () => {
 
   useEffect(() => {
     if (isComputerTurn && gameMode === 'pvc') {
-      playMoveSound();
       makeComputerMove();
     }
   }, [isComputerTurn, gameMode]);
@@ -217,6 +212,7 @@ const App = () => {
       }
 
       setIsComputerTurn(false);
+      playMoveSound();
     }, 500);
   };
 
