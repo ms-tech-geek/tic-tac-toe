@@ -5,7 +5,6 @@ import {
   deriveGameBoard,
 } from './hooks/gameLogic';
 import { checkImmediateWin, getOptimalMoves } from './hooks/compMove';
-import Header from './components/header/Header';
 import ScoreBoard from './components/scoreboard/ScoreBoard';
 import GameBoard from './components/gameboard/GameBoard';
 import GameOver from './components/gameover/GameOver';
@@ -219,7 +218,6 @@ const App = () => {
 
   return (
     <>
-      <Header />
       {gameMode === null && (
         <GameModeSelector onSelectMode={handleSelectMode} />
       )}
