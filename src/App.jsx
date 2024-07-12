@@ -5,6 +5,7 @@ import {
   deriveGameBoard,
 } from './hooks/gameLogic';
 import { checkImmediateWin, getOptimalMoves } from './hooks/compMove';
+import Header from './components/header/Header';
 import ScoreBoard from './components/scoreboard/ScoreBoard';
 import GameBoard from './components/gameboard/GameBoard';
 import GameOver from './components/gameover/GameOver';
@@ -217,28 +218,34 @@ const App = () => {
   };
 
   return (
-    <main>
-      {gameMode === null && (
-        <GameModeSelector onSelectMode={handleSelectMode} />
-      )}
-      {gameMode && (
-        <>
-          <ScoreBoard players={players} scoreBoard={scoreBoard} />
-          <PlayersBoard
-            initialPlayers={players}
-            activePlayer={activePlayer}
-            handlePlayerNameChange={handlePlayerNameChange}
-          />
-          <div className={styles.gameContainer}>
-            {(winner || hasDraw) && (
-              <GameOver winner={winner} onRematch={handleRematch} />
-            )}
+    <>
+      <Header />
+      <main>
+        {gameMode === null && (
+          <GameModeSelector onSelectMode={handleSelectMode} />
+        )}
+        {gameMode && (
+          <>
+            <ScoreBoard players={players} scoreBoard={scoreBoard} />
+            <PlayersBoard
+              initialPlayers={players}
+              activePlayer={activePlayer}
+              handlePlayerNameChange={handlePlayerNameChange}
+            />
+            <div className={styles.gameContainer}>
+              {(winner || hasDraw) && (
+                <GameOver winner={winner} onRematch={handleRematch} />
+              )}
 
-            <GameBoard onSelectSquare={handleSelectSquare} board={gameBoard} />
-          </div>
-        </>
-      )}
-    </main>
+              <GameBoard
+                onSelectSquare={handleSelectSquare}
+                board={gameBoard}
+              />
+            </div>
+          </>
+        )}
+      </main>
+    </>
   );
 };
 
