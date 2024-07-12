@@ -220,31 +220,26 @@ const App = () => {
   return (
     <>
       <Header />
-      <main>
-        {gameMode === null && (
-          <GameModeSelector onSelectMode={handleSelectMode} />
-        )}
-        {gameMode && (
-          <>
-            <ScoreBoard players={players} scoreBoard={scoreBoard} />
-            <PlayersBoard
-              initialPlayers={players}
-              activePlayer={activePlayer}
-              handlePlayerNameChange={handlePlayerNameChange}
-            />
-            <div className={styles.gameContainer}>
-              {(winner || hasDraw) && (
-                <GameOver winner={winner} onRematch={handleRematch} />
-              )}
+      {gameMode === null && (
+        <GameModeSelector onSelectMode={handleSelectMode} />
+      )}
+      {gameMode && (
+        <>
+          <ScoreBoard players={players} scoreBoard={scoreBoard} />
+          <PlayersBoard
+            initialPlayers={players}
+            activePlayer={activePlayer}
+            handlePlayerNameChange={handlePlayerNameChange}
+          />
+          <div className={styles.gameContainer}>
+            {(winner || hasDraw) && (
+              <GameOver winner={winner} onRematch={handleRematch} />
+            )}
 
-              <GameBoard
-                onSelectSquare={handleSelectSquare}
-                board={gameBoard}
-              />
-            </div>
-          </>
-        )}
-      </main>
+            <GameBoard onSelectSquare={handleSelectSquare} board={gameBoard} />
+          </div>
+        </>
+      )}
     </>
   );
 };
