@@ -240,7 +240,6 @@ const App = () => {
 
             <GameBoard onSelectSquare={handleSelectSquare} board={gameBoard} />
           </div>
-          <GameLog turns={gameTurns} />
         </>
       )}
     </main>
