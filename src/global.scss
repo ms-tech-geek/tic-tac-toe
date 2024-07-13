@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.gameModeContainerWrapper {
+  @apply
+  flex items-center justify-center min-h-screen
+}
+
+.gameModeContainer {
+  @apply
+  max-w-[30rem] bg-stone-700 p-16 sm:p-8 rounded-[6px] bg-gradient-to-b from-[#383624] to-[#282617] shadow-[0_0_20px_rgba(0,0,0,0.5)]
+}
+
+.gameModeContentWrapper {
+  @apply
+  flex flex-col items-center
+}
+
+.gameModeHeader {
+  @apply
+  text-5xl mb-4 font-caprasimo
+}
+
+.gameModeButtonsContainer {
+  @apply
+  flex flex-col
+}
+
+.gameModeButtons {
+  @apply
+  font-caprasimo text-xl bg-[#4b4b4b] hover:bg-[#fcd256] text-[#fcd256] hover:text-[#3f3b00] border-2 border-[#fcd256] p-2 px-4 rounded-[4px] cursor-pointer transition-all duration-200 my-2 flex-grow transform hover:scale-105
+}
