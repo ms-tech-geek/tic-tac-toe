@@ -82,6 +82,7 @@ export default defineConfig({
   ],
   base: './',
   build: {
+    outDir: 'dist', 
     rollupOptions: {
       output: {
         entryFileNames: 'assets/[name]-[hash].js',
