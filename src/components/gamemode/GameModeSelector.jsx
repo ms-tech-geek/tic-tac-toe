@@ -1,4 +1,13 @@
-const GameModeSelector = ({ onSelectMode }) => {
+import { useNavigate } from 'react-router-dom';
+
+const GameModeSelector = () => {
+  const navigate = useNavigate();
+
+  const handleSelectMode = (mode) => {
+    console.log(`Game mode selected: ${mode}`);
+    navigate(`/game/${mode}`);
+  };
+
   return (
     <div className="gameModeContainerWrapper">
       <div className="gameModeContainer">
@@ -6,14 +15,14 @@ const GameModeSelector = ({ onSelectMode }) => {
           <h2 className="gameModeHeader">Game Mode</h2>
           <div className="gameModeButtonsContainer">
             <button
-              onClick={() => onSelectMode('pvp')}
+              onClick={() => handleSelectMode('pvp')}
               className="gameModeButtons"
             >
               Player vs Player
             </button>
 
             <button
-              onClick={() => onSelectMode('pvc')}
+              onClick={() => handleSelectMode('pvc')}
               className="gameModeButtons"
             >
               Player vs Computer

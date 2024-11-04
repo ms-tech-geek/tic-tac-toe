@@ -1,19 +1,25 @@
-import { useEffect, useMemo, useState, useCallback } from 'react';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  useParams,
+  useNavigate,
+} from 'react-router-dom';
 import {
   deriveActivePlayer,
   deriveWinner,
   deriveGameBoard,
 } from './hooks/gameLogic';
+import { useEffect, useMemo, useState, useCallback } from 'react';
 import { checkImmediateWin, getOptimalMoves } from './hooks/compMove';
 import ScoreBoard from './components/scoreboard/ScoreBoard';
 import GameBoard from './components/gameboard/GameBoard';
 import GameOver from './components/gameover/GameOver';
+import PlayersBoard from './components/players/PlayersBoard';
+import GameModeSelector from './components/gamemode/GameModeSelector';
 import moveSound from '/assets/sounds/move.mp3';
 import winSound from '/assets/sounds/win.aac';
 import drawSound from '/assets/sounds/draw.aac';
 import resetSound from '/assets/sounds/reset.ogg';
-import PlayersBoard from './components/players/PlayersBoard';
-import GameModeSelector from './components/gamemode/GameModeSelector';
 import styles from './styles.module.scss';
 
 const DEBUG = false;
@@ -23,12 +29,27 @@ const initialPlayers = {
   O: 'Player 2',
 };
 
-const App = () => {
-  const [gameMode, setGameMode] = useState(null);
+const GameContent = () => {
+  const { mode } = useParams();
+  const navigate = useNavigate();
+
   const [players, setPlayers] = useState(initialPlayers);
   const [gameTurns, setGameTurns] = useState([]);
   const [scoreBoard, setScoreBoard] = useState({ X: 0, O: 0 });
   const [isComputerTurn, setIsComputerTurn] = useState(false);
+
+  useEffect(() => {
+    if (mode === 'pvp' || mode === 'pvc') {
+      if (mode === 'pvc') {
+        setPlayers({
+          X: 'Player 1',
+          O: 'Computer',
+        });
+      }
+    } else {
+      navigate('/');
+    }
+  }, [mode, navigate]);
 
   const activePlayer = useMemo(
     () => deriveActivePlayer(gameTurns),
@@ -62,24 +83,11 @@ const App = () => {
     playDrawSound();
   }
 
-  const handleSelectMode = (mode) => {
-    console.log(`Game mode selected: ${mode}`);
-    setGameMode(() => mode);
-    if (mode === 'pvc') {
-      setPlayers({
-        X: 'Player 1',
-        O: 'Computer',
-      });
-    }
-    setGameTurns([]); // Reset the game turns when mode is selected
-    setIsComputerTurn(false); // Reset computer turn when mode is selected
-  };
-
   const handleSelectSquare = (rowIndex, colIndex) => {
     if (
       gameBoard[rowIndex][colIndex] ||
       winner ||
-      (isComputerTurn && gameMode === 'pvc')
+      (isComputerTurn && mode === 'pvc')
     )
       return;
 
@@ -101,7 +109,7 @@ const App = () => {
         ...prevTurns,
       ];
 
-      if (gameMode === 'pvc' && currentPlayer === 'X') {
+      if (mode === 'pvc' && currentPlayer === 'X') {
         setIsComputerTurn(true);
       }
       DEBUG && console.log('Updated turns:', updatedTurns);
@@ -114,7 +122,7 @@ const App = () => {
     playResetSound();
     setGameTurns([]);
     setIsComputerTurn(false);
-    setGameMode(null);
+    navigate('/');
   };
 
   const updatePlayerName = (prevPlayers, symbol, playerName) => {
@@ -161,10 +169,10 @@ const App = () => {
   }, [winner, players]);
 
   useEffect(() => {
-    if (isComputerTurn && gameMode === 'pvc') {
+    if (isComputerTurn && mode === 'pvc') {
       makeComputerMove();
     }
-  }, [isComputerTurn, gameMode]);
+  }, [isComputerTurn, mode]);
 
   const makeComputerMove = () => {
     setTimeout(() => {
@@ -218,28 +226,35 @@ const App = () => {
 
   return (
     <>
-      {gameMode === null && (
-        <GameModeSelector onSelectMode={handleSelectMode} />
+    <ScoreBoard players={players} scoreBoard={scoreBoard} />
+    <PlayersBoard
+      initialPlayers={players}
+      activePlayer={activePlayer}
+      handlePlayerNameChange={handlePlayerNameChange}
+    />
+    <div className={styles.gameContainer}>
+      {(winner || hasDraw) && (
+        <GameOver winner={winner} onRematch={handleRematch} />
       )}
-      {gameMode && (
-        <>
-          <ScoreBoard players={players} scoreBoard={scoreBoard} />
-          <PlayersBoard
-            initialPlayers={players}
-            activePlayer={activePlayer}
-            handlePlayerNameChange={handlePlayerNameChange}
-          />
-          <div className={styles.gameContainer}>
-            {(winner || hasDraw) && (
-              <GameOver winner={winner} onRematch={handleRematch} />
-            )}
-
-            <GameBoard onSelectSquare={handleSelectSquare} board={gameBoard} />
-          </div>
-        </>
-      )}
-    </>
+      <GameBoard onSelectSquare={handleSelectSquare} board={gameBoard} />
+    </div>
+  </>
   );
+};
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <GameModeSelector />,
+  },
+  {
+    path: "/game/:mode",
+    element: <GameContent />,
+  },
+]);
+
+const App = () => {
+  return <RouterProvider router={router} />;
 };
 
 export default App;
