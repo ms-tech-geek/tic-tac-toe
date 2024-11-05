@@ -1,11 +1,15 @@
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setGameMode } from '../../store/gameSlice';
 
 const GameModeSelector = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSelectMode = (mode) => {
     console.log(`Game mode selected: ${mode}`);
-    navigate(`/game/${mode}`);
+    dispatch(setGameMode(mode)); // Dispatch action to update Redux state
+    navigate(`/game/${mode}`); // Navigate to the game page
   };
 
   return (
