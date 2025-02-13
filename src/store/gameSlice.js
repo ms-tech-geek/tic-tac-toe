@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   gameMode: null,
+  boardSize: 3,
   players: {
     X: 'Player 1',
     O: 'Player 2',
@@ -17,10 +18,12 @@ export const gameSlice = createSlice({
     setGameMode: (state, action) => {
       state.gameMode = action.payload;
     },
-    // Add more reducers here
+    setBoardSize: (state, action) => {
+      state.boardSize = action.payload;
+    },
   },
 });
 
-export const { setGameMode } = gameSlice.actions;
+export const { setGameMode, setBoardSize } = gameSlice.actions;
 
 export default gameSlice.reducer;

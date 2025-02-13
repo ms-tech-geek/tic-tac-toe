@@ -1,15 +1,17 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setGameMode } from '../../store/gameSlice';
+import { setGameMode, setBoardSize } from '../../store/gameSlice';
 
 const GameModeSelector = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [selectedSize, setSelectedSize] = useState(3);
 
   const handleSelectMode = (mode) => {
-    console.log(`Game mode selected: ${mode}`);
-    dispatch(setGameMode(mode)); // Dispatch action to update Redux state
-    navigate(`/game/${mode}`); // Navigate to the game page
+    dispatch(setGameMode(mode));
+    dispatch(setBoardSize(selectedSize));
+    navigate(`/game/${mode}`);
   };
 
   return (
@@ -18,6 +20,29 @@ const GameModeSelector = () => {
         <div className="gameModeContentWrapper">
           <h2 className="gameModeHeader">Game Mode</h2>
           <div className="gameModeButtonsContainer">
+            <div>
+              {' '}
+              <label>
+                {' '}
+                <input
+                  type="radio"
+                  value={3}
+                  checked={selectedSize === 3}
+                  onChange={() => setSelectedSize(3)}
+                />{' '}
+                3 x 3{' '}
+              </label>{' '}
+              <label style={{ marginLeft: '1rem' }}>
+                {' '}
+                <input
+                  type="radio"
+                  value={4}
+                  checked={selectedSize === 4}
+                  onChange={() => setSelectedSize(4)}
+                />{' '}
+                4 x 4{' '}
+              </label>{' '}
+            </div>
             <button
               onClick={() => handleSelectMode('pvp')}
               className="gameModeButtons"

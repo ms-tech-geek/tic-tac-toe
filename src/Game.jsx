@@ -2,8 +2,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 import {
   deriveActivePlayer,
   deriveWinner,
-  deriveGameBoard,
+  createInitialBoard,
 } from './hooks/gameLogic';
+import { useSelector } from 'react-redux';
 import { useEffect, useMemo, useState, useCallback } from 'react';
 import { checkImmediateWin, getOptimalMoves } from './hooks/compMove';
 import ScoreBoard from './components/scoreboard/ScoreBoard';
@@ -26,6 +27,7 @@ const initialPlayers = {
 const Game = () => {
   const { mode } = useParams();
   const navigate = useNavigate();
+  const boardSize = useSelector((state) => state.game.boardSize);
 
   const [players, setPlayers] = useState(initialPlayers);
   const [gameTurns, setGameTurns] = useState([]);
@@ -49,10 +51,17 @@ const Game = () => {
     () => deriveActivePlayer(gameTurns),
     [gameTurns]
   );
-  const gameBoard = useMemo(() => deriveGameBoard(gameTurns), [gameTurns]);
+  const gameBoard = useMemo(() => {
+    const board = createInitialBoard(boardSize);
+    for (const turn of gameTurns) {
+      const { row, col } = turn.square;
+      board[row][col] = turn.player;
+    }
+    return board;
+  }, [gameTurns, boardSize]);
   const winner = useMemo(
-    () => deriveWinner({ gameBoard, players }),
-    [gameBoard, players]
+    () => deriveWinner({ gameBoard, players, boardSize }),
+    [gameBoard, players, boardSize]
   );
   const hasDraw = gameTurns.length === 9 && !winner;
 
@@ -170,7 +179,7 @@ const Game = () => {
 
   const makeComputerMove = () => {
     setTimeout(() => {
-      const board = deriveGameBoard(gameTurns);
+      const board = deriveGameBoard(gameTurns, boardSize);
 
       // Check for immediate win for computer
       let move = checkImmediateWin(board, 'O');

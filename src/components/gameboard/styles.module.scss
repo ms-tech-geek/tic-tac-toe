@@ -15,6 +15,20 @@
   }
 }
 
+/* Define default size variables */
+:root {
+  --card-size-3: 5rem;
+  --card-size-4: 4rem;
+}
+
+/* Modifier classes for board container */
+.gameBoardContainer.size3 {
+  --card-size: var(--card-size-3);
+}
+.gameBoardContainer.size4 {
+  --card-size: var(--card-size-4);
+}
+
 /*
  * Game board element
  */
@@ -30,15 +44,16 @@
 }
 
 /*
- * Game card element
+ * Updated game card element using CSS variable for sizing.
+ * Default fallback is 5rem for 3x3.
  */
 .gameCard {
-  width: 5rem;
-  height: 5rem;
+  width: var(--card-size, 5rem);
+  height: var(--card-size, 5rem);
   border: none;
   background: #aca788;
   color: #3f3b00;
-  font-size: 2.5rem;
+  font-size: calc(var(--card-size, 5rem) * 0.5);
   cursor: pointer;
   font-family: 'Caprasimo', cursive;
   padding: 1rem;
@@ -60,9 +75,9 @@
   }
 
   @media (max-width: 450px) {
-    width: 4rem;
-    height: 4rem;
-    font-size: 1.5rem;
+    width: calc(var(--card-size, 5rem) * 0.8);
+    height: calc(var(--card-size, 5rem) * 0.8);
+    font-size: calc(var(--card-size, 5rem) * 0.3);
   }
 }
 

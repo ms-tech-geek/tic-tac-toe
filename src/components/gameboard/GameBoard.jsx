@@ -9,8 +9,7 @@ const GameBoard = ({ onSelectSquare, board }) => {
   DEBUG && console.log('board:', board);
 
   return (
-    <ol className={styles.gameBoardContainer}>
-      {board.map((row, rowIndex) => {
+<ol className={`${styles.gameBoardContainer} ${styles.size4}`}>      {board.map((row, rowIndex) => {
         DEBUG && console.log('Processing row:', row, 'at index:', rowIndex);
         return (
           <li key={rowIndex}>
